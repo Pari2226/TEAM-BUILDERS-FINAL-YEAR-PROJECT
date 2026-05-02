@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiActivity, FiBarChart2, FiUsers, FiTarget } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
-import api from "../services/api";
+import api from "../api/axios";
 import PageShell from "../components/layout/PageShell";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";

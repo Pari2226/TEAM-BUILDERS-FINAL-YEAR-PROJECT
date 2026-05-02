@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
-import api, { setAuthTokenGetter } from "../../services/api";
+import api, { setAuthTokenGetter } from "../../api/axios";
 
 export default function ClerkSync() {
   const { getToken, isLoaded, isSignedIn } = useAuth();

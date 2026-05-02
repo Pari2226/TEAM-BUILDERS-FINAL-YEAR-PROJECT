@@ -8,7 +8,7 @@ import {
   FiCpu,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import api from "../api/axios";
 import PageShell from "../components/layout/PageShell";
 import Button from "../components/ui/Button";
 import GlassCard from "../components/ui/GlassCard";

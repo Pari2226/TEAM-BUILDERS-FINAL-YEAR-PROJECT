@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { FiSearch, FiFilter, FiCpu } from "react-icons/fi";
-import api from "../services/api";
+import api from "../api/axios";
 import PageShell from "../components/layout/PageShell";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";

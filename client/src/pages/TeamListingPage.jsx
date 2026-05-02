@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useAuth } from "@clerk/clerk-react";
-import api from "../services/api";
+import api from "../api/axios";
 import PageShell from "../components/layout/PageShell";
 import SectionHeading from "../components/ui/SectionHeading";
 import GlassCard from "../components/ui/GlassCard";

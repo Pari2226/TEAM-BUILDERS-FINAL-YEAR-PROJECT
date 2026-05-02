@@ -4,7 +4,7 @@ import PageShell from "../components/layout/PageShell";
 import GlassCard from "../components/ui/GlassCard";
 import EditProfile from "../components/EditProfile";
 import { useToast } from "../context/ToastContext";
-import api from "../services/api";
+import api from "../api/axios";
 
 export default function ProfilePage() {
   const { user: clerkUser, isLoaded } = useUser();
