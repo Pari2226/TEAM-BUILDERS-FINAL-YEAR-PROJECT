@@ -72,7 +72,7 @@ export default function TeamListingPage() {
     }
 
     try {
-      await api.post(`/teams/join/${teamId}`);
+      await api.post(`/api/teams/join/${teamId}`);
       pushToast("Joined team successfully", "success");
       const { data } = await api.get("/api/teams");
       setTeams(data.teams);

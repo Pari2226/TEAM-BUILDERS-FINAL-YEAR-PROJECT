@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", getUsers);
 router.get("/dashboard", requireClerkUser, getDashboardData);
-router.get("/:id", getUserById);
 router.put("/update", requireClerkUser, updateUser);
+router.get("/:id", getUserById);
 
 module.exports = router;

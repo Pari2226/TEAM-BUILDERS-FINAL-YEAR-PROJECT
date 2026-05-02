@@ -5,9 +5,14 @@ const requireClerkUser = async (req, res, next) => {
   try {
     const auth = getAuth(req);
     if (!auth?.userId) {
-      console.warn("[Auth] Missing Clerk userId");
+      console.warn("[Auth] Missing Clerk userId", {
+        method: req.method,
+        path: req.originalUrl,
+      });
       return res.status(401).json({ message: "Not authorized" });
     }
+
+    console.log("[Auth] Clerk userId", auth.userId);
 
     const clerkUser = await clerkClient.users.getUser(auth.userId);
     const mongoUser = await syncUserFromClerk(clerkUser);

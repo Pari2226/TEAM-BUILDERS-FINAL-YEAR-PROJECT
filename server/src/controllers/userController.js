@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../models/User");
 const Team = require("../models/Team");
 
@@ -7,23 +8,34 @@ const getUsers = async (_req, res) => {
 };
 
 const getUserById = async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
-  }
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      console.warn("[GetUserById] Invalid user id", req.params.id);
+      return res.status(400).json({ message: "Invalid user id" });
+    }
 
-  res.json({ user });
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.json({ user });
+  } catch (error) {
+    console.error("[GetUserById] Error", error.message);
+    return res.status(400).json({ message: "Invalid user id" });
+  }
 };
 
 const updateUser = async (req, res) => {
   try {
+    console.log("[UpdateUser] Auth", req.auth);
     console.log("[UpdateUser] Auth info", {
-      userId: req.user?._id,
+      mongoUserId: req.user?._id,
       clerkUserId: req.auth?.userId,
       params: req.params,
     });
     console.log("[UpdateUser] Request body", req.body);
-    if (!req.user?._id) {
+    if (!req.auth?.userId) {
       return res.status(401).json({
         success: false,
         error: "Not authorized",
@@ -73,14 +85,24 @@ const updateUser = async (req, res) => {
       updates.profileImage = nextImage;
     }
 
+    console.log("[UpdateUser] Updates", updates);
     if (Object.keys(updates).length === 0) {
       return res
         .status(400)
         .json({ success: false, error: "No profile changes provided" });
     }
 
+    const user = await User.findOne({ clerkId: req.auth.userId });
+    console.log("[UpdateUser] Mongo user", user?._id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: "User not found",
+      });
+    }
+
     const updatedUser = await User.findByIdAndUpdate(
-      req.user._id,
+      user._id,
       { $set: updates },
       { new: true, runValidators: true },
     );
@@ -89,6 +111,7 @@ const updateUser = async (req, res) => {
       return res.status(404).json({ success: false, error: "User not found" });
     }
 
+    console.log("[UpdateUser] Updated user", updatedUser?._id);
     return res.json({ success: true, user: updatedUser });
   } catch (error) {
     console.error("Update profile error:", error.message);
