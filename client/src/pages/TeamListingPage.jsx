@@ -94,22 +94,26 @@ export default function TeamListingPage() {
 
       <GlassCard className="mt-10">
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_auto]">
-          <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+          <label className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3">
             <FiSearch className="text-cyan-300" />
             <input
-              className="w-full bg-transparent text-white outline-none placeholder:text-white/35"
+              className="w-full bg-transparent text-[var(--app-text)] outline-none placeholder:text-[var(--text-subtle)]"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search teams or required skills"
             />
           </label>
           <select
-            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none"
+            className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--app-text)] outline-none"
             value={status}
             onChange={(event) => setStatus(event.target.value)}
           >
             {statuses.map((item) => (
-              <option key={item} value={item} className="bg-slate-950">
+              <option
+                key={item}
+                value={item}
+                className="bg-[var(--app-bg)] text-[var(--app-text)]"
+              >
                 {item}
               </option>
             ))}

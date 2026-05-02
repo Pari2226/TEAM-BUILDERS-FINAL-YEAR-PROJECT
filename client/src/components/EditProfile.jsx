@@ -9,10 +9,10 @@ export default function EditProfile({ form, onChange, onSubmit, loading }) {
         value={form.name}
         onChange={(event) => onChange("name", event.target.value)}
       />
-      <label className="flex flex-col gap-2 text-sm text-white/80">
+      <label className="flex flex-col gap-2 text-sm text-[var(--text-muted)]">
         <span className="font-medium">Role</span>
         <select
-          className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/60"
+          className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--app-text)] outline-none focus:border-cyan-300/60 focus:bg-[var(--surface)]"
           value={form.role}
           onChange={(event) => onChange("role", event.target.value)}
         >
@@ -25,16 +25,20 @@ export default function EditProfile({ form, onChange, onSubmit, loading }) {
             "Founder",
             "Other",
           ].map((role) => (
-            <option key={role} value={role} className="bg-slate-950">
+            <option
+              key={role}
+              value={role}
+              className="bg-[var(--app-bg)] text-[var(--app-text)]"
+            >
               {role}
             </option>
           ))}
         </select>
       </label>
-      <label className="flex flex-col gap-2 text-sm text-white/80 md:col-span-2">
+      <label className="flex flex-col gap-2 text-sm text-[var(--text-muted)] md:col-span-2">
         <span className="font-medium">Bio</span>
         <textarea
-          className="min-h-32 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/60"
+          className="min-h-32 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--app-text)] outline-none focus:border-cyan-300/60 focus:bg-[var(--surface)]"
           value={form.bio}
           onChange={(event) => onChange("bio", event.target.value)}
         />

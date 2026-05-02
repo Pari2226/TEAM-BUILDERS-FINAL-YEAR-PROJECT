@@ -18,22 +18,26 @@ export default function UserCard({ user, onConnect, onBookmark }) {
             `https://api.dicebear.com/9.x/shapes/svg?seed=${encodeURIComponent(user.name)}`
           }
           alt={user.name}
-          className="h-16 w-16 rounded-2xl border border-white/10 object-cover"
+          className="h-16 w-16 rounded-2xl border border-[var(--border)] object-cover"
         />
         <div className="flex-1">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <h3 className="text-lg font-semibold text-white">{user.name}</h3>
-              <p className="text-sm text-cyan-200/80">{user.role}</p>
+              <h3 className="text-lg font-semibold text-[var(--app-text)]">
+                {user.name}
+              </h3>
+              <p className="text-sm text-[var(--accent-text-soft)]">
+                {user.role}
+              </p>
             </div>
             <button
               onClick={onBookmark}
-              className="rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition hover:text-cyan-300"
+              className="rounded-full border border-[var(--border)] bg-[var(--surface-soft)] p-2 text-[var(--text-muted)] transition hover:text-cyan-300"
             >
               <FiBookmark />
             </button>
           </div>
-          <p className="mt-3 text-sm leading-6 text-white/70">
+          <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
             {user.bio ||
               "Ready to join a high-signal product or hackathon team."}
           </p>
@@ -41,7 +45,7 @@ export default function UserCard({ user, onConnect, onBookmark }) {
             {user.skills?.slice(0, 5).map((skill) => (
               <span
                 key={skill}
-                className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/80"
+                className="rounded-full bg-[var(--chip-bg)] px-3 py-1 text-xs text-[var(--chip-text)]"
               >
                 {skill}
               </span>
@@ -58,7 +62,7 @@ export default function UserCard({ user, onConnect, onBookmark }) {
             href={user.github}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70 transition hover:border-cyan-300/40 hover:text-white"
+            className="rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-muted)] transition hover:border-cyan-300/40 hover:text-[var(--app-text)]"
           >
             <FiGithub className="mr-2 inline" /> GitHub
           </a>
@@ -68,7 +72,7 @@ export default function UserCard({ user, onConnect, onBookmark }) {
             href={user.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70 transition hover:border-cyan-300/40 hover:text-white"
+            className="rounded-full border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-muted)] transition hover:border-cyan-300/40 hover:text-[var(--app-text)]"
           >
             <FiLinkedin className="mr-2 inline" /> LinkedIn
           </a>

@@ -17,7 +17,7 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-hero-grid text-white antialiased">
+    <div className="min-h-screen text-[var(--app-text)] antialiased">
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

@@ -34,7 +34,7 @@ export default function HomePage() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100"
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-[var(--chip-text)]"
           >
             <FiCpu /> AI-powered teammate discovery
           </motion.p>
@@ -42,7 +42,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="mt-6 max-w-3xl text-5xl font-bold leading-tight text-white md:text-7xl"
+            className="mt-6 max-w-3xl text-5xl font-bold leading-tight text-[var(--heading-text)] md:text-7xl"
           >
             Build Your Dream Team
           </motion.h1>
@@ -50,7 +50,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
-            className="mt-6 max-w-2xl text-lg leading-8 text-white/72 md:text-xl"
+            className="mt-6 max-w-2xl text-lg leading-8 text-[var(--text-muted)] md:text-xl"
           >
             Find talented developers, designers, and innovators. Create momentum
             faster with curated profiles, open teams, and ML-powered
@@ -72,8 +72,8 @@ export default function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {heroStats.map((stat) => (
               <GlassCard key={stat.label} className="p-5">
-                <p className="text-sm text-white/60">{stat.label}</p>
-                <h3 className="mt-2 text-3xl font-bold text-white">
+                <p className="text-sm text-[var(--text-muted)]">{stat.label}</p>
+                <h3 className="mt-2 text-3xl font-bold text-[var(--heading-text)]">
                   {stat.value}
                 </h3>
               </GlassCard>
@@ -90,42 +90,46 @@ export default function HomePage() {
           <GlassCard className="relative overflow-hidden p-0">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/25 via-transparent to-emerald-400/20" />
             <div className="relative p-8">
-              <p className="text-sm uppercase tracking-[0.3em] text-cyan-200/80">
+              <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent-text-soft)]">
                 Team intelligence
               </p>
-              <h2 className="mt-4 text-2xl font-bold text-white">
+              <h2 className="mt-4 text-2xl font-bold text-[var(--heading-text)]">
                 Discover the strongest collaboration fit.
               </h2>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-soft)] p-5">
                   <FiZap className="text-2xl text-cyan-300" />
-                  <p className="mt-4 text-sm text-white/60">Instant matching</p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className="mt-4 text-sm text-[var(--text-muted)]">
+                    Instant matching
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-[var(--heading-text)]">
                     Find teammates by skills and role.
                   </p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-soft)] p-5">
                   <FiUsers className="text-2xl text-emerald-300" />
-                  <p className="mt-4 text-sm text-white/60">Open teams</p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className="mt-4 text-sm text-[var(--text-muted)]">
+                    Open teams
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-[var(--heading-text)]">
                     Join projects already looking for talent.
                   </p>
                 </div>
               </div>
-              <div className="mt-8 rounded-3xl border border-white/10 bg-slate-950/45 p-5">
-                <p className="text-sm text-white/60">
+              <div className="mt-8 rounded-3xl border border-[var(--border)] bg-slate-950/45 p-5">
+                <p className="text-sm text-[var(--text-muted)]">
                   Recommended teammate match
                 </p>
                 <div className="mt-3 flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-semibold text-[var(--heading-text)]">
                       Sarah Chen
                     </h3>
-                    <p className="text-sm text-cyan-200/70">
+                    <p className="text-sm text-[var(--accent-text-soft)]">
                       Full Stack • React • Node • AWS
                     </p>
                   </div>
-                  <span className="rounded-full bg-cyan-300/15 px-4 py-2 text-sm font-semibold text-cyan-100">
+                  <span className="rounded-full bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-[var(--chip-text)]">
                     96% match
                   </span>
                 </div>
@@ -151,10 +155,10 @@ export default function HomePage() {
               transition={{ delay: index * 0.08 }}
             >
               <GlassCard className="h-full">
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold text-[var(--heading-text)]">
                   {feature.title}
                 </h3>
-                <p className="mt-4 leading-7 text-white/68">
+                <p className="mt-4 leading-7 text-[var(--text-muted)]">
                   {feature.description}
                 </p>
               </GlassCard>
@@ -190,10 +194,14 @@ export default function HomePage() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {testimonials.map((item) => (
             <GlassCard key={item.name}>
-              <p className="text-lg leading-8 text-white/80">“{item.quote}”</p>
+              <p className="text-lg leading-8 text-[var(--app-text)]">
+                “{item.quote}”
+              </p>
               <div className="mt-6">
-                <p className="font-semibold text-white">{item.name}</p>
-                <p className="text-sm text-white/60">{item.role}</p>
+                <p className="font-semibold text-[var(--heading-text)]">
+                  {item.name}
+                </p>
+                <p className="text-sm text-[var(--text-muted)]">{item.role}</p>
               </div>
             </GlassCard>
           ))}

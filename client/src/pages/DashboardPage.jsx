@@ -27,8 +27,8 @@ export default function DashboardPage() {
 
   return (
     <PageShell className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-      <section className="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-glow backdrop-blur-xl">
-        <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+      <section className="rounded-[32px] border border-[var(--border)] bg-[var(--surface-soft)] p-8 shadow-glow backdrop-blur-xl">
+        <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent-text)]">
           Dashboard
         </p>
         <div className="mt-4 flex items-center gap-4">
@@ -38,20 +38,20 @@ export default function DashboardPage() {
               `https://api.dicebear.com/9.x/shapes/svg?seed=${encodeURIComponent(clerkUser?.fullName || clerkUser?.firstName || "Builder")}`
             }
             alt={clerkUser?.fullName || "Builder"}
-            className="h-16 w-16 rounded-2xl border border-white/10 object-cover"
+            className="h-16 w-16 rounded-2xl border border-[var(--border)] object-cover"
           />
           <div>
-            <h1 className="text-4xl font-bold text-white md:text-5xl">
+            <h1 className="text-4xl font-bold text-[var(--heading-text)] md:text-5xl">
               Welcome back,{" "}
               {clerkUser?.firstName || clerkUser?.fullName || "Builder"}.
             </h1>
-            <p className="mt-2 text-white/65">
+            <p className="mt-2 text-[var(--text-muted)]">
               {clerkUser?.primaryEmailAddress?.emailAddress ||
                 "Signed in with Clerk"}
             </p>
           </div>
         </div>
-        <p className="mt-4 max-w-3xl text-white/70">
+        <p className="mt-4 max-w-3xl text-[var(--text-muted)]">
           Track your teams, inspect recommendations, and keep your profile ready
           for the next project opportunity.
         </p>
@@ -105,31 +105,33 @@ export default function DashboardPage() {
 
         <div className="space-y-8">
           <GlassCard>
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-[var(--heading-text)]">
               Recommended teammates
             </h2>
-            <p className="mt-3 text-white/65">
+            <p className="mt-3 text-[var(--text-muted)]">
               Use the teammate finder to surface stronger matches based on your
               skills.
             </p>
-            <div className="mt-5 rounded-2xl border border-dashed border-white/10 bg-white/5 p-6 text-sm text-white/60">
+            <div className="mt-5 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface-soft)] p-6 text-sm text-[var(--text-muted)]">
               AI recommendations will appear here once the recommendation
               service is connected.
             </div>
           </GlassCard>
 
           <GlassCard>
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-[var(--heading-text)]">
               Recent activity
             </h2>
             <div className="mt-5 space-y-4">
               {(dashboard?.recentActivity || []).map((activity) => (
                 <div
                   key={activity.title}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4"
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-4"
                 >
-                  <p className="font-semibold text-white">{activity.title}</p>
-                  <p className="mt-1 text-sm text-white/65">
+                  <p className="font-semibold text-[var(--app-text)]">
+                    {activity.title}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--text-muted)]">
                     {activity.description}
                   </p>
                 </div>

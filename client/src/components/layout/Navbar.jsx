@@ -6,30 +6,39 @@ import {
   SignedOut,
   SignOutButton,
   UserButton,
+  useAuth,
   useUser,
 } from "@clerk/clerk-react";
 import Button from "../ui/Button";
 import ThemeToggle from "./ThemeToggle";
 
-const navItems = [
+const publicNavItems = [
   { to: "/", label: "Home" },
   { to: "/teams", label: "Teams" },
-  { to: "/find-teammates", label: "Find Teammates" },
+];
+
+const signedInNavItems = [
+  { to: "/dashboard", label: "Dashboard" },
+  { to: "/teams", label: "Teams" },
+  { to: "/profile", label: "Profile" },
+  { to: "/create-team", label: "Create Team" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { isSignedIn } = useAuth();
   const { user } = useUser();
+  const items = isSignedIn ? signedInNavItems : publicNavItems;
 
   const linkClass = ({ isActive }) =>
-    `rounded-full px-4 py-2 text-sm transition ${isActive ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/10 hover:text-white"}`;
+    `rounded-full px-4 py-2 text-sm transition ${isActive ? "bg-[var(--surface-soft)] text-[var(--app-text)]" : "text-[var(--text-muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--app-text)]"}`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#081120]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         <Link
           to="/"
-          className="flex items-center gap-3 text-lg font-bold tracking-tight text-white"
+          className="flex items-center gap-3 text-lg font-bold tracking-tight text-[var(--app-text)]"
         >
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-400 text-slate-950 shadow-glow">
             TB
@@ -38,22 +47,11 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {navItems.map((item) => (
+          {items.map((item) => (
             <NavLink key={item.to} to={item.to} className={linkClass}>
               {item.label}
             </NavLink>
           ))}
-          <SignedIn>
-            <NavLink to="/dashboard" className={linkClass}>
-              Dashboard
-            </NavLink>
-            <NavLink to="/profile" className={linkClass}>
-              Profile
-            </NavLink>
-            <NavLink to="/create-team" className={linkClass}>
-              Create Team
-            </NavLink>
-          </SignedIn>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -65,15 +63,9 @@ export default function Navbar() {
             <Button to="/signup">Get Started</Button>
           </SignedOut>
           <SignedIn>
-            <span className="text-sm text-white/60">
+            <span className="text-sm text-[var(--text-muted)]">
               Hi, {user?.firstName || user?.fullName || "Builder"}
             </span>
-            <Button variant="secondary" to="/dashboard">
-              Dashboard
-            </Button>
-            <Button variant="secondary" to="/profile">
-              Profile
-            </Button>
             <UserButton afterSignOutUrl="/" />
             <SignOutButton>
               <Button variant="ghost">Logout</Button>
@@ -83,7 +75,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-soft)] text-[var(--app-text)] lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label="Open navigation"
         >
@@ -92,9 +84,9 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#081120]/98 px-4 py-4 lg:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--nav-bg-solid)] px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-2">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}

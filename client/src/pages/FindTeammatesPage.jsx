@@ -73,30 +73,34 @@ export default function FindTeammatesPage() {
 
       <GlassCard className="mt-10">
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr_0.8fr_auto]">
-          <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+          <label className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3">
             <FiSearch className="text-cyan-300" />
             <input
-              className="w-full bg-transparent text-white outline-none placeholder:text-white/35"
+              className="w-full bg-transparent text-[var(--app-text)] outline-none placeholder:text-[var(--text-subtle)]"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search skills such as React, Node, Figma..."
             />
           </label>
-          <label className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/70">
+          <label className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--text-muted)]">
             <FiFilter className="text-cyan-300" />
             <select
-              className="w-full bg-transparent outline-none"
+              className="w-full bg-transparent text-[var(--app-text)] outline-none"
               value={role}
               onChange={(event) => setRole(event.target.value)}
             >
               {roles.map((item) => (
-                <option key={item} value={item} className="bg-slate-950">
+                <option
+                  key={item}
+                  value={item}
+                  className="bg-[var(--app-bg)] text-[var(--app-text)]"
+                >
                   {item}
                 </option>
               ))}
             </select>
           </label>
-          <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-sm text-[var(--text-muted)]">
             {filteredUsers.length} builders found
           </div>
           <Button onClick={handleRecommend} className="gap-2 whitespace-nowrap">
@@ -114,8 +118,10 @@ export default function FindTeammatesPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {recommended.map((item) => (
               <GlassCard key={item.name}>
-                <p className="text-lg font-semibold text-white">{item.name}</p>
-                <p className="mt-2 text-sm text-white/65">
+                <p className="text-lg font-semibold text-[var(--heading-text)]">
+                  {item.name}
+                </p>
+                <p className="mt-2 text-sm text-[var(--text-muted)]">
                   {item.skills?.join(", ")}
                 </p>
                 <p className="mt-4 text-3xl font-bold text-cyan-300">

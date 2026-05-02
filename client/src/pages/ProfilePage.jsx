@@ -84,7 +84,7 @@ export default function ProfilePage() {
     setLoading(true);
     try {
       const token =
-        (await getToken()) || (await getToken({ template: "default" }));
+        (await getToken({ template: "default" })) || (await getToken());
       const payload = {
         ...form,
         skills: form.skills
@@ -92,7 +92,10 @@ export default function ProfilePage() {
           .map((skill) => skill.trim())
           .filter(Boolean),
       };
-      console.log("Sending data:", payload);
+      console.log("[Profile] Submitting update", {
+        hasToken: Boolean(token),
+        payload,
+      });
 
       const { data } = await api.put("/api/users/update", payload, {
         headers: {
@@ -100,6 +103,7 @@ export default function ProfilePage() {
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
       });
+      console.log("[Profile] Update response", data);
 
       if (data?.success && data?.user) {
         setCurrentUser(data.user);
@@ -118,8 +122,15 @@ export default function ProfilePage() {
         pushToast("Profile updated", "success");
       }
     } catch (error) {
+      console.error("[Profile] Update error", {
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message,
+      });
       pushToast(
-        error.response?.data?.message || "Unable to update profile",
+        error.response?.data?.error ||
+          error.response?.data?.message ||
+          "Unable to update profile",
         "error",
       );
     } finally {
@@ -132,20 +143,22 @@ export default function ProfilePage() {
       <GlassCard>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+            <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent-text)]">
               Profile
             </p>
-            <h1 className="mt-4 text-3xl font-bold text-white">
+            <h1 className="mt-4 text-3xl font-bold text-[var(--heading-text)]">
               Your public builder profile
             </h1>
-            <p className="mt-2 text-white/65">
+            <p className="mt-2 text-[var(--text-muted)]">
               {clerkUser?.primaryEmailAddress?.emailAddress ||
                 currentUser?.email ||
                 "Clerk authenticated account"}
             </p>
           </div>
-          <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-center">
-            <p className="text-sm text-white/60">Profile completion</p>
+          <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-soft)] px-5 py-4 text-center">
+            <p className="text-sm text-[var(--text-muted)]">
+              Profile completion
+            </p>
             <p className="mt-1 text-3xl font-bold text-cyan-300">
               {Math.min(
                 100,

@@ -85,10 +85,10 @@ export default function CreateTeamPage() {
   return (
     <PageShell className="mx-auto grid min-h-[80vh] max-w-4xl items-center px-4 py-12 lg:px-8">
       <GlassCard>
-        <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+        <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent-text)]">
           Create Team
         </p>
-        <h1 className="mt-4 text-3xl font-bold text-white">
+        <h1 className="mt-4 text-3xl font-bold text-[var(--heading-text)]">
           Build an open project crew.
         </h1>
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
@@ -100,10 +100,10 @@ export default function CreateTeamPage() {
             }
             placeholder="e.g. Launch Crew"
           />
-          <label className="flex flex-col gap-2 text-sm text-white/80">
+          <label className="flex flex-col gap-2 text-sm text-[var(--text-muted)]">
             <span className="font-medium">Description</span>
             <textarea
-              className="min-h-32 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/60"
+              className="min-h-32 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--app-text)] outline-none focus:border-cyan-300/60 focus:bg-[var(--surface)]"
               value={form.description}
               onChange={(event) =>
                 setForm({ ...form, description: event.target.value })
@@ -127,22 +127,31 @@ export default function CreateTeamPage() {
             }
             placeholder="Hackathon, SaaS, Mobile App"
           />
-          <label className="flex flex-col gap-2 text-sm text-white/80">
+          <label className="flex flex-col gap-2 text-sm text-[var(--text-muted)]">
             <span className="font-medium">Status</span>
             <select
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-cyan-300/60"
+              className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-[var(--app-text)] outline-none focus:border-cyan-300/60 focus:bg-[var(--surface)]"
               value={form.status}
               onChange={(event) =>
                 setForm({ ...form, status: event.target.value })
               }
             >
-              <option value="Open" className="bg-slate-950">
+              <option
+                value="Open"
+                className="bg-[var(--app-bg)] text-[var(--app-text)]"
+              >
                 Open
               </option>
-              <option value="In Progress" className="bg-slate-950">
+              <option
+                value="In Progress"
+                className="bg-[var(--app-bg)] text-[var(--app-text)]"
+              >
                 In Progress
               </option>
-              <option value="Completed" className="bg-slate-950">
+              <option
+                value="Completed"
+                className="bg-[var(--app-bg)] text-[var(--app-text)]"
+              >
                 Completed
               </option>
             </select>

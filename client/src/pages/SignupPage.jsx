@@ -20,10 +20,10 @@ export default function SignupPage() {
                 Join Team Builders
               </span>
             </div>
-            <h2 className="text-3xl font-bold text-white">
+            <h2 className="text-3xl font-bold text-[var(--heading-text)]">
               Create your builder profile in minutes.
             </h2>
-            <p className="text-white/70">
+            <p className="text-[var(--text-muted)]">
               Start by sharing your skill set, then expand your profile with
               GitHub, LinkedIn, and project details later.
             </p>
@@ -31,7 +31,7 @@ export default function SignupPage() {
               {sampleSkills.slice(0, 4).map((skill) => (
                 <div
                   key={skill}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/75"
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3 text-sm text-[var(--text-muted)]"
                 >
                   {skill}
                 </div>
@@ -51,25 +51,25 @@ export default function SignupPage() {
                 variables: {
                   colorPrimary: "#22d3ee",
                   colorBackground: "transparent",
-                  colorText: "#f8fbff",
-                  colorInputBackground: "rgba(255,255,255,0.05)",
-                  colorInputText: "#f8fbff",
-                  colorNeutral: "#dbeafe",
+                  colorText: "var(--app-text)",
+                  colorInputBackground: "var(--surface-soft)",
+                  colorInputText: "var(--app-text)",
+                  colorNeutral: "var(--text-muted)",
                 },
                 elements: {
                   card: "bg-transparent shadow-none border-0",
-                  headerTitle: "text-white",
-                  headerSubtitle: "text-white/70",
+                  headerTitle: "text-[var(--heading-text)]",
+                  headerSubtitle: "text-[var(--text-muted)]",
                   formButtonPrimary:
                     "bg-cyan-400 text-slate-950 hover:bg-cyan-300",
-                  formFieldLabel: "text-white/75",
+                  formFieldLabel: "text-[var(--text-muted)]",
                   formFieldInput:
-                    "border-white/10 bg-white/5 text-white placeholder:text-white/30",
+                    "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--app-text)] placeholder:text-[var(--text-subtle)]",
                   footerActionLink: "text-cyan-300 hover:text-cyan-200",
                   socialButtonsBlockButton:
-                    "border-white/10 bg-white/5 text-white hover:bg-white/10",
-                  dividerLine: "bg-white/10",
-                  dividerText: "text-white/50",
+                    "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--app-text)] hover:bg-[var(--surface)]",
+                  dividerLine: "bg-[var(--border)]",
+                  dividerText: "text-[var(--text-subtle)]",
                 },
               }}
             />

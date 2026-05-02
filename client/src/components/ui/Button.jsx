@@ -7,8 +7,9 @@ const variants = {
   primary:
     "bg-cyan-400 text-slate-950 shadow-glow hover:-translate-y-0.5 hover:bg-cyan-300",
   secondary:
-    "border border-white/15 bg-white/5 text-white hover:border-cyan-300/40 hover:bg-white/10",
-  ghost: "text-white/80 hover:bg-white/10 hover:text-white",
+    "border border-[var(--border)] bg-[var(--surface-soft)] text-[var(--app-text)] hover:border-cyan-300/40 hover:bg-[var(--surface)]",
+  ghost:
+    "text-[var(--text-muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--app-text)]",
   dark: "bg-slate-950 text-white hover:bg-slate-800",
 };
 

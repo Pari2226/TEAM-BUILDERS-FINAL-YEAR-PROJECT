@@ -17,7 +17,18 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    console.log("Request Body:", req.body);
+    console.log("[UpdateUser] Auth info", {
+      userId: req.user?._id,
+      clerkUserId: req.auth?.userId,
+      params: req.params,
+    });
+    console.log("[UpdateUser] Request body", req.body);
+    if (!req.user?._id) {
+      return res.status(401).json({
+        success: false,
+        error: "Not authorized",
+      });
+    }
     const { name, role, skills, bio, github, linkedin, image, profileImage } =
       req.body;
 

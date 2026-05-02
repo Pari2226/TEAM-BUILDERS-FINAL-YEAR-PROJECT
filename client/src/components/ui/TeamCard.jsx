@@ -13,19 +13,19 @@ export default function TeamCard({
       <div>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300/70">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent-text)]">
               {team.status || "Open"}
             </p>
-            <h3 className="mt-2 text-xl font-semibold text-white">
+            <h3 className="mt-2 text-xl font-semibold text-[var(--app-text)]">
               {team.teamName}
             </h3>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-cyan-300">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-3 text-cyan-300">
             <FiUsers />
           </div>
         </div>
         <p
-          className={`mt-4 text-sm leading-6 text-white/70 ${compact ? "line-clamp-3" : ""}`}
+          className={`mt-4 text-sm leading-6 text-[var(--text-muted)] ${compact ? "line-clamp-3" : ""}`}
         >
           {team.description}
         </p>
@@ -33,14 +33,14 @@ export default function TeamCard({
           {team.requiredSkills?.slice(0, 4).map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100"
+              className="rounded-full border border-[var(--chip-border)] bg-[var(--chip-bg)] px-3 py-1 text-xs text-[var(--chip-text)]"
             >
               {skill}
             </span>
           ))}
         </div>
       </div>
-      <div className="mt-6 flex items-center justify-between gap-4 text-sm text-white/60">
+      <div className="mt-6 flex items-center justify-between gap-4 text-sm text-[var(--text-muted)]">
         <span>
           {team.members?.length || 0}/{team.maxMembers || 5} members
         </span>
