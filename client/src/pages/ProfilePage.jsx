@@ -17,7 +17,7 @@ export default function ProfilePage() {
     bio: "",
     github: "",
     linkedin: "",
-    image: "",
+    otherLinks: "",
     skills: "",
   });
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,9 @@ export default function ProfilePage() {
     bio: profile?.bio || "",
     github: profile?.github || "",
     linkedin: profile?.linkedin || "",
-    image: profile?.image || profile?.profileImage || fallback.image || "",
+    otherLinks: Array.isArray(profile?.otherLinks)
+      ? profile.otherLinks.join(", ")
+      : profile?.otherLinks || fallback.otherLinks || "",
     skills: (profile?.skills || []).join(", "),
   });
 
@@ -45,7 +47,7 @@ export default function ProfilePage() {
         buildFormFromProfile(profile, {
           name: clerkUser.fullName || clerkUser.firstName || "",
           role: "Full Stack",
-          image: clerkUser.imageUrl || "",
+          otherLinks: "",
         }),
       );
     } catch {
@@ -54,7 +56,7 @@ export default function ProfilePage() {
         buildFormFromProfile(null, {
           name: clerkUser.fullName || clerkUser.firstName || "",
           role: "Full Stack",
-          image: clerkUser.imageUrl || "",
+          otherLinks: "",
         }),
       );
     }
@@ -113,7 +115,7 @@ export default function ProfilePage() {
           buildFormFromProfile(data.user, {
             name: form.name,
             role: form.role,
-            image: form.image,
+            otherLinks: form.otherLinks,
           }),
         );
         pushToast("Profile updated", "success");

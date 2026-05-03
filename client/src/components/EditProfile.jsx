@@ -56,10 +56,10 @@ export default function EditProfile({ form, onChange, onSubmit, loading }) {
         placeholder="https://linkedin.com/in/yourname"
       />
       <Input
-        label="Profile Image"
-        value={form.image}
-        onChange={(event) => onChange("image", event.target.value)}
-        placeholder="https://..."
+        label="Other Links"
+        value={form.otherLinks}
+        onChange={(event) => onChange("otherLinks", event.target.value)}
+        placeholder="Add portfolio, LeetCode, or other links"
       />
       <Input
         label="Skills"
