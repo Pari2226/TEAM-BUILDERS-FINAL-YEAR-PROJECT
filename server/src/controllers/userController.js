@@ -28,6 +28,8 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    console.log("AUTH:", req.auth);
+    console.log("BODY:", req.body);
     console.log("[UpdateUser] Auth", req.auth);
     console.log("[UpdateUser] Auth info", {
       mongoUserId: req.user?._id,

@@ -92,6 +92,7 @@ export default function ProfilePage() {
           .map((skill) => skill.trim())
           .filter(Boolean),
       };
+      console.log("Sending data:", payload);
       console.log("[Profile] Submitting update", {
         hasToken: Boolean(token),
         payload,
