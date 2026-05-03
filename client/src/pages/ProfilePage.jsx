@@ -4,7 +4,7 @@ import PageShell from "../components/layout/PageShell";
 import GlassCard from "../components/ui/GlassCard";
 import EditProfile from "../components/EditProfile";
 import { useToast } from "../context/ToastContext";
-import api from "../api/axios";
+import api, { BASE_URL } from "../api/axios";
 
 export default function ProfilePage() {
   const { user: clerkUser, isLoaded } = useUser();
@@ -98,6 +98,7 @@ export default function ProfilePage() {
         payload,
       });
 
+      console.log("Update URL:", `${BASE_URL}/api/users/update`);
       const { data } = await api.put("/api/users/update", payload, {
         headers: {
           "Content-Type": "application/json",
