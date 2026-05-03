@@ -83,8 +83,8 @@ export default function ProfilePage() {
 
     setLoading(true);
     try {
-      const token =
-        (await getToken({ template: "default" })) || (await getToken());
+      const token = await getToken({ template: "default" });
+      console.log("Token:", token);
       const payload = {
         ...form,
         skills: form.skills

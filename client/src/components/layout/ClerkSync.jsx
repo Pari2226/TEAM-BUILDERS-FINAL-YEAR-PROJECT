@@ -9,12 +9,9 @@ export default function ClerkSync() {
 
   useEffect(() => {
     setAuthTokenGetter(async () => {
-      const token = await getToken();
-      if (token) {
-        return token;
-      }
-
-      return getToken({ template: "default" });
+      const token = await getToken({ template: "default" });
+      console.log("Token:", token);
+      return token;
     });
   }, [getToken]);
 

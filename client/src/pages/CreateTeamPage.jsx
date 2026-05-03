@@ -49,7 +49,8 @@ export default function CreateTeamPage() {
     setLoading(true);
 
     try {
-      await getToken();
+      const token = await getToken({ template: "default" });
+      console.log("Token:", token);
       const payload = {
         ...form,
         requiredSkills: form.requiredSkills
@@ -61,7 +62,10 @@ export default function CreateTeamPage() {
       console.log("Sending data:", payload);
 
       const { data } = await api.post("/api/teams/create", payload, {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
       });
 
       if (data?.success) {
