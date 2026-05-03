@@ -15,15 +15,22 @@ const allowedOrigins = [
 ];
 
 app.use(
-  clerkMiddleware({
-    secretKey: process.env.CLERK_SECRET_KEY,
-    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
-  }),
-);
-app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
+  }),
+);
+app.options(
+  "*",
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  }),
+);
+app.use(
+  clerkMiddleware({
+    secretKey: process.env.CLERK_SECRET_KEY,
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
   }),
 );
 app.use(express.json({ limit: "2mb" }));
