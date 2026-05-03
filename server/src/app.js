@@ -9,6 +9,11 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://team-builders.netlify.app",
+];
+
 app.use(
   clerkMiddleware({
     secretKey: process.env.CLERK_SECRET_KEY,
@@ -17,7 +22,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   }),
 );
